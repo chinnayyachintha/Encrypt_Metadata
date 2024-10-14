@@ -98,7 +98,7 @@ resource "aws_iam_role_policy_attachment" "custom_kms_policy_attachment" {
 
 # Lambda Function
 resource "aws_lambda_function" "payment_processor" {
-  filename      = "payment_processor_lambda/payment_processor.zip" # Path to your deployment package
+  filename      = "payment_processor_lambda/encryptdata_lambda_function.zip" # Path to your deployment package
   function_name = "PaymentProcessorFunction"
   role          = aws_iam_role.lambda_role.arn
   handler       = "encryptdata_lambda_function.lambda_handler"
