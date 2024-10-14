@@ -1,0 +1,25 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform variable files
+*.tfvars
+terraform.tfvars
+*.tfvars.json
+
+# Terraform plan files
+*.tfplan
+
+# Terraform provider cache
+.terraform/
+
+# Terraform lock file
+.terraform.lock.hcl
+
+# Local temp files
+*.log
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
