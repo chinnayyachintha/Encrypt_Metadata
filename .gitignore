@@ -1,33 +1,40 @@
-# Terraform state files
+# Terraform-related files
+# Ignore Terraform state files and backups
 *.tfstate
 *.tfstate.backup
 
-# Terraform variable files
+# Ignore Terraform variable files (JSON format)
 *.tfvars.json
 
-# Terraform plan files
+# Ignore Terraform plan files
 *.tfplan
 
-# Terraform provider cache
+# Ignore Terraform provider cache directory
 .terraform/
 
-# Terraform lock file
+# Ignore Terraform lock file
 .terraform.lock.hcl
 
-# Local temp files
+# Local temporary files
+# Ignore temporary files and logs
 *.log
 *.tmp
 
-# OS-specific files
+# Operating System-specific files
+# Ignore macOS and Windows-specific system files
 .DS_Store
 Thumbs.db
 
-# ignore files
-# Ignore Python-related directories and files
+# Python-related files
+# Ignore compiled Python files and cache directories
 __pycache__/
 *.pyc
 
-# Ignore virtual environment and Python dependencies
+# Ignore virtual environments and dependencies for encrypt and decrypt
+encrypt/venv/
+decrypt/venv/
+
+# Ignore directories containing Python packages and binaries for encrypt and decrypt
 encrypt/bin/
 encrypt/*.dist-info/
 encrypt/boto3/
@@ -52,10 +59,7 @@ decrypt/s3transfer/
 decrypt/six.py
 decrypt/urllib3/
 
-# Ignore lambda function zip file if it's generated as a build artifact
+# AWS Lambda artifacts
+# Ignore Lambda function zip files if they are generated as build artifacts
 encrypt/lambda_function.zip
-
-# Ignore decrypt and virtual environment directories
-encrypt/venv/
-decrypt/venv/
-
+decrypt/lambda_function.zip
