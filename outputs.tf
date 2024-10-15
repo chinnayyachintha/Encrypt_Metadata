@@ -12,6 +12,6 @@ output "kms_encryption_key_id" {
 
 # Outputs to reference the combined policy
 output "custom_lambda_policy" {
-  value       = aws_iam_policy.combined_lambda_kms_policy.arn
+  value       = aws_iam_policy.lambda_policy.arn
   description = "The ARN of the Combined Lambda and KMS Policy"
 }

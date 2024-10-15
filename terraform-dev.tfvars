@@ -11,13 +11,13 @@ encryption_key = "EncryptionKey"
 lambda_role = "LambdaExecutionRole"
 
 #Name Custom policy for KMS access
-lambda_policy   = "Customlambda_policy"
+lambda_policy = "Customlambda_policy"
 
 # Name of Lambda function for Payment processor
 payment_processor = "PaymentProcessorFunction"
 
 # value od secret_key
-scret_value = "8f14e45fceea167a5a36dedd4bea2543b9c9f1b256837c6c64e6ef075845c5de"
+secret_key = "8f14e45fceea167a5a36dedd4bea2543b9c9f1b256837c6c64e6ef075845c5de"
 
 # Name of aws secret manager
 aws_secretmanager = "jwt_secret"

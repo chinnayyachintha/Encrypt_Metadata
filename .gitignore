@@ -23,8 +23,29 @@
 Thumbs.db
 
 # ignore files
-*.py text eol=lf
-*.sh text eol=lf
-venv/
+# Ignore Python-related directories and files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment and Python dependencies
+encrypt/bin/
+encrypt/*.dist-info/
+encrypt/boto3/
+encrypt/botocore/
+encrypt/dateutil/
+encrypt/jmespath/
+encrypt/jwt/
+encrypt/python_dateutil-2.9.0.post0.dist-info/
+encrypt/s3transfer/
+encrypt/six.py
+encrypt/urllib3/
+
+# Ignore lambda function zip file if it's generated as a build artifact
+encrypt/lambda_function.zip
+
+# Ignore decrypt and virtual environment directories
+decrypt/
+encrypt/venv/
+
 
 

@@ -29,7 +29,7 @@ variable "payment_processor" {
 }
 
 variable "secret_key" {
-  description = "Name of the secret key"
+  description = "Value of secret for JWT"
   type        = string
 }
 

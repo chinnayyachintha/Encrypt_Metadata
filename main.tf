@@ -78,16 +78,16 @@ resource "aws_iam_policy" "lambda_policy" {
           "kms:GenerateDataKey",
           "kms:Sign"
         ],
-        Resource = "*"  
+        Resource = "*"
       },
       {
-        Effect = "Allow",
-        Action = "secretsmanager:GetSecretValue",
+        Effect   = "Allow",
+        Action   = "secretsmanager:GetSecretValue",
         Resource = aws_secretsmanager_secret.jwt_secret.arn
       },
       {
-        Effect = "Allow",
-        Action = "logs:*",
+        Effect   = "Allow",
+        Action   = "logs:*",
         Resource = "*"
       }
     ]
@@ -95,9 +95,9 @@ resource "aws_iam_policy" "lambda_policy" {
 
   tags = merge(
     {
-      Name = var.lambda_policy  
+      Name = var.lambda_policy
     },
-    var.tags 
+    var.tags
   )
 }
 
@@ -105,7 +105,7 @@ resource "aws_iam_policy" "lambda_policy" {
 # Attach the custom policy to the IAM role
 resource "aws_iam_role_policy_attachment" "custom_kms_policy_attachment" {
   role       = aws_iam_role.lambda_role.name
-  policy_arn = aws_iam_policy.custom_kms_policy.arn
+  policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
 resource "aws_secretsmanager_secret" "jwt_secret" {
@@ -115,11 +115,11 @@ resource "aws_secretsmanager_secret" "jwt_secret" {
 
 resource "aws_secretsmanager_secret_version" "jwt_secret_value" {
   secret_id     = aws_secretsmanager_secret.jwt_secret.id
-  secret_string = var.scret_value
+  secret_string = var.secret_key
 }
 
 # Lambda Function
-resource "aws_lambda_function" "payment_processor" {
+resource "aws_lambda_function" "encrypt_payment_processor" {
   filename      = "encrypt/lambda_function.zip" # Path to your deployment package
   function_name = "Encrypt_PaymentProcessorFunction"
   role          = aws_iam_role.lambda_role.arn
@@ -130,7 +130,7 @@ resource "aws_lambda_function" "payment_processor" {
     variables = {
       KMS_SIGNING_KEY_ID    = aws_kms_key.jwt_signing_key.id
       KMS_ENCRYPTION_KEY_ID = aws_kms_key.encryption_key.id
-      JWT_SECRET            = aws_secretsmanager_secret.jwt_secret.secret_string
+      JWT_SECRET            = aws_secretsmanager_secret_version.jwt_secret_value.secret_string # Reference the secret version
     }
   }
 
@@ -141,6 +141,31 @@ resource "aws_lambda_function" "payment_processor" {
   tags = merge(
     {
       Name = var.payment_processor
+    },
+    var.tags
+  )
+}
+
+resource "aws_lambda_function" "decrypt_payment_processor" {
+  filename      = "decrypt/lambda_function.zip" # Path to your deployment package
+  function_name = "Decrypt_PaymentProcessorFunction"
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "lambda_function.lambda_handler"
+  runtime       = "python3.9"
+
+  environment {
+    variables = {
+      KMS_ENCRYPTION_KEY_ID = aws_kms_key.encryption_key.id
+      JWT_SECRET            = aws_secretsmanager_secret_version.jwt_secret_value.secret_string # Reference the secret version
+    }
+  }
+
+  memory_size = 128 # Size in MB
+  timeout     = 30  # Timeout in seconds
+
+  tags = merge(
+    {
+      Name = "decrypt_payment_processor"
     },
     var.tags
   )
