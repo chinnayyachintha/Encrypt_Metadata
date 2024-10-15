@@ -66,3 +66,18 @@ decrypt/urllib3/
 # Ignore AWS Lambda artifacts for encrypt/ and decrypt/
 encrypt/lambda_function.zip
 decrypt/lambda_function.zip
+
+# Ignore everything
+*
+
+# Except .py files
+!*.py
+
+# Except requirements.txt
+!requirements.txt
+
+# Ignore __pycache__ directories
+__pycache__/
+
+# Ignore .zip files
+*.zip
