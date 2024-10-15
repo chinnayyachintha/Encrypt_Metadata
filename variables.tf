@@ -18,7 +18,7 @@ variable "lambda_role" {
   description = "Name of lambda role"
 }
 
-variable "custom_kms_policy" {
+variable "lambda_policy" {
   type        = string
   description = "Name Custom policy for KMS access"
 }
@@ -26,6 +26,16 @@ variable "custom_kms_policy" {
 variable "payment_processor" {
   type        = string
   description = "Name of the Lambda Function for Payment Processor"
+}
+
+variable "secret_key" {
+  description = "Name of the secret key"
+  type        = string
+}
+
+variable "aws_secretmanager" {
+  type        = string
+  description = "Name od aws secret manager for to store jwt secret key"
 }
 
 variable "tags" {

@@ -9,3 +9,9 @@ output "kms_encryption_key_id" {
   description = "The KMS Key ID for encrypting claim set"
   value       = aws_kms_key.encryption_key.id
 }
+
+# Outputs to reference the combined policy
+output "custom_lambda_policy" {
+  value       = aws_iam_policy.combined_lambda_kms_policy.arn
+  description = "The ARN of the Combined Lambda and KMS Policy"
+}
