@@ -45,6 +45,5 @@ encrypt/lambda_function.zip
 
 # Ignore decrypt and virtual environment directories
 encrypt/venv/
-
-
+decrypt/venv/
 
