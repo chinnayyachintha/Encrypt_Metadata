@@ -40,6 +40,18 @@ encrypt/s3transfer/
 encrypt/six.py
 encrypt/urllib3/
 
+decrypt/bin/
+decrypt/*.dist-info/
+decrypt/boto3/
+decrypt/botocore/
+decrypt/dateutil/
+decrypt/jmespath/
+decrypt/jwt/
+decrypt/python_dateutil-2.9.0.post0.dist-info/
+decrypt/s3transfer/
+decrypt/six.py
+decrypt/urllib3/
+
 # Ignore lambda function zip file if it's generated as a build artifact
 encrypt/lambda_function.zip
 
