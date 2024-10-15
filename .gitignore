@@ -21,3 +21,10 @@
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# ignore files
+*.py text eol=lf
+*.sh text eol=lf
+venv/
+
+
