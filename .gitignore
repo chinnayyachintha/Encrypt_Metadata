@@ -34,7 +34,9 @@ __pycache__/
 encrypt/venv/
 decrypt/venv/
 
-# Ignore directories containing Python packages and binaries for encrypt and decrypt
+# Ignore Python-related files and directories for both encrypt/ and decrypt/
+encrypt/__pycache__/
+encrypt/*.pyc
 encrypt/bin/
 encrypt/*.dist-info/
 encrypt/boto3/
@@ -47,6 +49,8 @@ encrypt/s3transfer/
 encrypt/six.py
 encrypt/urllib3/
 
+decrypt/__pycache__/
+decrypt/*.pyc
 decrypt/bin/
 decrypt/*.dist-info/
 decrypt/boto3/
@@ -59,7 +63,6 @@ decrypt/s3transfer/
 decrypt/six.py
 decrypt/urllib3/
 
-# AWS Lambda artifacts
-# Ignore Lambda function zip files if they are generated as build artifacts
+# Ignore AWS Lambda artifacts for encrypt/ and decrypt/
 encrypt/lambda_function.zip
 decrypt/lambda_function.zip
