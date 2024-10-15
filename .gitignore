@@ -44,7 +44,6 @@ encrypt/urllib3/
 encrypt/lambda_function.zip
 
 # Ignore decrypt and virtual environment directories
-decrypt/
 encrypt/venv/
 
 
